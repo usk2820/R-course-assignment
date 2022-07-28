@@ -20,29 +20,9 @@ what’s your decision on the null hypothesis?
 (e) Read this article and discuss how prevalent p-hacking is in science.
 
 
+
+
 **QUESTION 2**
-
-Binomial Logit Regression with R: Load the data file voting_data.csv. This data is
-Pew Research Center Polls taken during the 2008 election campaign. The data consists
-of a respondent’s vote intention, marital status and state information. “dem_vote” is a
-vote intention indicator between a republican candidate and a democrat candidate (0 =
-republican leaning, 1 = democrat leaning), “marital_id” is a marital status indicator (0
-= non-married, 1 = married), and “state” is the state where the respondent lives. Use
-a binomial logistic regression to predict vote intention (y) using the indicator for being
-married (x1) and the state indicator (x2) as predictors.
-
-(a) Explain potential problems if we use a multiple linear regression model with a
-normal error term for this exercise.
-
-(b) Write down and explain the outcome distribution and the link function of the
-binomial logistic regression model.
-
-(c) Show the summary of the regression results and interpret the the coefficient related
-to x1. What is your conclusion as to the vote intention for married and non-married
-voters?
-
-
-**QUESTION 3**
 
 R programming: Suppose we have two separate bags of balls. Bag A has N number of
 balls in it, some white some black but we don’t know how many of each color. Bag B
