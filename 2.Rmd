@@ -1,0 +1,184 @@
+---
+author: "Umer Salman Khan"
+date: "3/20/2022"
+output: html_document
+---
+
+part a and b
+```{r}
+myFunc = function(N,KW,KB,R,T) # Introducing function
+{
+library('gtools') #library for combination function
+lenT=length(T) #length of the sequence T
+usebag =c(rep('W',N), rep('B',N)) #an extra bag introduced to draw balls as per required
+usebag
+matr = matrix(NA,nrow = R+1, ncol = R) #introducing the matrix to find the possible number of combinations that can be drawn from bag A
+y=R+1
+x=R+1
+for(i in 1:nrow(matr)) #for loop to add values to the matrix
+{
+  y=y-1
+  x=y
+  for(j in 1:ncol(matr))
+  {
+    if(x>0)
+    {
+      matr[i,j]='W'
+      x=x-1
+    }
+    else
+    {
+      matr[i,j]='B'
+    }
+  }
+}
+matr #possible combinations of drawing balls from A to B
+#matr = unique(combinations(n=length(usebag), r=R, v=usebag, set=FALSE, repeats.allowed=TRUE))
+#matr
+r1= nrow(matr) #number of rows
+c1= ncol(matr) #number of columns
+matB = matrix(NA,nrow =  r1, ncol = KW+KB) # introducing the matrix of balls in bag B
+for(i in 1:nrow(matB)) #for loop to add values to the matrix of KW and KB.
+{
+    x=KW
+    y=KB
+  for(j in 1:ncol(matB))
+  {
+    if(x>0)
+    {
+      matB[i,j]='W'
+      x=x-1
+    }
+    else if(y>0)
+    {
+      matB[i,j]='B'
+      y=y-1
+    }
+  }
+}
+matB
+newmatB =cbind(matB,matr,deparse.level = 1) #introducing the matrix to get the possible number of combinations that can be seen in bag B after drawing from bag A by combining matrix R and matrix B
+newmatB
+#Now we have all the possibilities for bag B compositions so we calculate maximum liklihood for each of them with the sequence of balls T
+countmatB= matrix(0,nrow =  r1, ncol = 2) #newmatB is now converted into a count matrix of black and white balls with only 2 columns in it.
+for(i in 1:nrow(newmatB))
+{
+   for(j in 1:ncol(newmatB))
+   {
+     if(newmatB[i,j]=='W')
+     {
+       countmatB[i,1]=countmatB[i,1]+1
+     }
+     else if(newmatB[i,j]=='B')
+     {
+       countmatB[i,2]=countmatB[i,2]+1
+     }
+   }
+}
+countmatB #possible outcomes in bag B
+#maximum likelihood
+mlh_vector = c() #introducing vector to store likelihood variables.
+for(i in 1:nrow(countmatB)) #using for loop to check the likelihood of the sequence T for all possible combinations in bag B
+{
+  a=countmatB[i,1]
+  b=countmatB[i,2]
+  c=1
+  for(j in 1:lenT)
+  {
+    if(T[j]=='W')
+    {
+      c=c*choose(a,1)
+      a=a-1
+    }
+    else if(T[j]=='B')
+    {
+      c=c*choose(b,1)
+      b=b-1
+    }
+    mlh_vector[i]=c
+  }
+}
+mlh_vector #likelihood values stored in the vector
+z=which.max(mlh_vector) #check index for maximum likelihood
+best_draw =matr[z,] # check for the most likely draw on the same index in matrix R
+best_draw
+best_draw_n=c(0,0)
+for(i in 1:R)
+{
+  if(best_draw[i] == 'W') 
+     best_draw_n[1]=best_draw_n[1] +1
+  else if(best_draw[i] == 'B')
+     best_draw_n[2]= best_draw_n[2]+1
+}
+best_draw_n # count of black and white balls for the most likelihood
+matA = matrix(NA,nrow = N+1, ncol = N) #introducing matrix A
+y=N+1
+x=N+1
+for(i in 1:nrow(matA)) #for loop to store all possible combinations of black and white balls in bag A
+{
+  y=y-1
+  x=y
+  for(j in 1:ncol(matA))
+  {
+    if(x>0)
+    {
+      matA[i,j]='W'
+      x=x-1
+    }
+    else
+    {
+      matA[i,j]='B'
+    }
+  }
+}
+matA
+countmatA= matrix(0,nrow =  nrow(matA), ncol = 2) #bag A is now converted into a count matrix with only 2 columns in it.
+for(i in 1:nrow(matA))
+{
+   for(j in 1:ncol(matA))
+   {
+     if(matA[i,j]=='W')
+     {
+       countmatA[i,1]=countmatA[i,1]+1
+     }
+     else if(matA[i,j]=='B')
+     {
+       countmatA[i,2]=countmatA[i,2]+1
+     }
+   }
+}
+countmatA
+mlh_vector2 = c() #introducing vector to store likelihood variables for what draws are most likely with what combinations of balls in bag A
+for(i in 1:nrow(countmatA)) #for loop to add likelihod values to the vector
+{
+  a=countmatA[i,1]
+  b=countmatA[i,2]
+  c=1
+  c=c*choose(a,best_draw_n[1])*choose(b,best_draw_n[2])
+  mlh_vector2[i]=c
+}
+mlh_vector2 #likelihood values stored in the vector
+z=which.max(mlh_vector2) #check index for maximum likelihood.
+best_drawA =matA[z,] # check for the most likely combination of A on the same index.
+best_drawA
+black_balls=0 #introducing variable of black balls
+white_balls=0 #introducing variable of white balls
+for(i in 1:N) #for loop to count black balls and white balls for the combination chosen
+{
+  if(best_drawA[i]=='W')
+    white_balls=white_balls+1
+  else if(best_drawA[i]=='B')
+    black_balls=black_balls+1
+}
+white_balls
+black_balls
+result= matrix(0,nrow =  1, ncol = 2) #result stored in a matrix.
+result[1,1]=white_balls
+result[1,2]=black_balls
+colnames(result) <- c("White_balls", "Black_balls")
+result
+
+}
+myFunc(20,10,10,5,c('W','B','B','W','B','W')) #call the function for the values mentioned in part b.
+
+```
