@@ -1,5 +1,5 @@
 # R-course-assignments
-QUESTION 1
+**QUESTION 1**
 
 Hypothesis testing with R: Simulate data x from rnorm(n = 50; mean = 0; sd = 2) and
 y from rnorm(n = 50; mean = 2 + 1.5x; sd = 10) using set.seed(4). Fit a linear
@@ -20,7 +20,7 @@ what’s your decision on the null hypothesis?
 (e) Read this article and discuss how prevalent p-hacking is in science.
 
 
-QUESTION 2
+**QUESTION 2**
 
 Binomial Logit Regression with R: Load the data file voting_data.csv. This data is
 Pew Research Center Polls taken during the 2008 election campaign. The data consists
@@ -42,7 +42,7 @@ to x1. What is your conclusion as to the vote intention for married and non-marr
 voters?
 
 
-QUESTION 3
+**QUESTION 3**
 
 R programming: Suppose we have two separate bags of balls. Bag A has N number of
 balls in it, some white some black but we don’t know how many of each color. Bag B
