@@ -1,6 +1,6 @@
 # R-course-assignments
 QUESTION 1
-1. Hypothesis testing with R: Simulate data x from rnorm(n = 50; mean = 0; sd = 2) and
+Hypothesis testing with R: Simulate data x from rnorm(n = 50; mean = 0; sd = 2) and
 y from rnorm(n = 50; mean = 2 + 1.5x; sd = 10) using set.seed(4). Fit a linear
 regression of y on x using y = a + bx + e
 
@@ -16,7 +16,7 @@ what’s your decision on the null hypothesis?
 
 
 QUESTION 2
-2. Binomial Logit Regression with R: Load the data file voting_data.csv. This data is
+Binomial Logit Regression with R: Load the data file voting_data.csv. This data is
 Pew Research Center Polls taken during the 2008 election campaign. The data consists
 of a respondent’s vote intention, marital status and state information. “dem_vote” is a
 vote intention indicator between a republican candidate and a democrat candidate (0 =
@@ -35,7 +35,7 @@ voters?
 
 
 QUESTION 3
-3. R programming: Suppose we have two separate bags of balls. Bag A has N number of
+R programming: Suppose we have two separate bags of balls. Bag A has N number of
 balls in it, some white some black but we don’t know how many of each color. Bag B
 has Kw white ball(s) and Kb black ball(s). You draw R number of balls from Bag A
 and move them to Bag B. Then, you draw T balls sequentially from Bag B. Suppose
