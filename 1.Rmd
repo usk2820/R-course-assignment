@@ -1,0 +1,55 @@
+---
+author: "Umer Salman Khan"
+date: "3/20/2022"
+output: html_document
+---
+Question 1:
+(a)
+```{r}
+set.seed(4)
+x=sort(rnorm(n=50,mean=0,sd=2)) #normal distribution for x values
+x
+y=rnorm(n = 50, mean = 2 + 1.5*x, sd = 10) #normal distribution for y values
+y
+reg<-lm(y ~ x,) #running the linear regression model
+coeff = coefficients(reg) #coefficients of the model
+coeff
+plot(x, y) #plotting y against x
+abline(reg, col = "darkgreen") #adding a fitted linear line to the plot
+summary(reg) #summary of the regression model
+
+```
+
+(b)We received p values using the summary(reg) function. Since the p value of B1 is 0.0716 which is greater than the given 0.05 standard of significance, we can say that the results are not statistically significant and we do not reject the null hypothesis.
+
+(c)
+```{r}
+set.seed(200)
+x=sort(rnorm(n=50,mean=0,sd=2)) #normal distribution for x values
+x
+y=rnorm(n = 50, mean = 2 + 1.5*x, sd = 10) #normal distribution for y values
+y
+reg<-lm(y ~ x,) #running the linear regression model
+coeff = coefficients(reg) #coefficients os the model
+coeff
+plot(x, y) #plotting y against x
+abline(reg, col = "blue") #adding a fitted linear line to the plot
+summary(reg) #summary of the regression model
+```
+Since the p value of B1 is 0.0544 which is greater than 0.05, we can say that the results are not statistically significant and we do not reject the null hypothesis.
+
+(d) Hypothesis testing is used by doing statistical analysis on the data to either reject or accept your hypothesis. However, there are several limitations to it as mentioned in the article itself. As mentioned in the article,  ideally, statisticians say, researchers should set out to prove a specific hypothesis before a study begins. Wansink, in contrast, was retroactively creating hypotheses to fit data patterns that emerged after an experiment was over[1].In classic hypothesis testing, the hypothesis should always be made before the data is collected and analyzed. 
+Hypothesis testing does not explain the reasons as to why does the difference exist. They simply indicate whether the difference is due to fluctuations due to some reason but the tests do not tell us as to which are the other reasons causing the difference.[2]
+
+Another factor is data massaging that can manipulate the results. As stated in the article, a result is usually considered statistically significant when a calculation called a p-value is less than or equal to 0.05. But excessive data massaging can wind up with a p-value lower than 0.05 just by random chance, making a hypothesis seem valid when it’s actually a fluke[1]. The tweaking of data to meet the usual arbitrary cutoff of 0.05 p-value and suiting your needs is something that is more than often done. 
+
+Another flaw in hypothesis testing is that the result significance tests are based on probabilities and as such cannot be expressed with full certainty. Statistical inferences based on the significance tests cannot be said to be entirely correct evidences concerning the truth of the hypothesis. This is specially so in case of small samples where the probability of drawing erring inferences happens to be generally higher. For greater reliability, the size of samples be sufficiently enlarged.[2]
+
+[1] https://www.buzzfeednews.com/article/stephaniemlee/brian-wansink-cornell-p-hacking
+[2] https://www.wisdomjobs.com/e-university/research-methodology-tutorial-355/limitations-of-the-tests-of-hypotheses-11539.html#:~:text=Limitations%20of%20Hypothesis%20testing%20in%20Research&text=Important%20limitations%20are%20as%20follows,useful%20aids%20for%20decision%2Dmaking.
+
+(e) The article talks about the prevalence of p-hacking and how it is really common amount scientists and researchers to tweak the results according to their needs to attain the p-value in a way that their results become statistically significant because the chances of data supported studies getting published becomes higher.
+
+The article refers to the researchers who used text mining to calculate the extent of p-hacking. The study gave significant evidence the p-hacking is very widespread among the research community.Most researchers study for hypothesis and finding significant relationships with non zero effect sizes but it can not be avoided completely as academics to it for publications and career advancement.
+
+
